@@ -1,0 +1,9 @@
+<% if @user %>
+  <p>You are looking at <%= @user.username %>'s page<p>
+<% end %>
+
+Workouts:
+
+<% @lists.each do |list| %>
+  <%= list.name %>
+<% end %>

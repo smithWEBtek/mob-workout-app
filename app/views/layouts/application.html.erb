@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WorkoutApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %> 
+    <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+
+    <% if current_user %>
+      <h1>Welcome <%= current_user.username %>!</h1>
+      <%= button_to "Leave Now!!", logout_path, method: "delete" %>
+    <% else %>
+      <%= link_to "Login", login_path %>
+      <%= link_to "Make more Nachos", user_signup_path %>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
