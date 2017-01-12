@@ -10,54 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230011246) do
+ActiveRecord::Schema.define(version: 20170112231907) do
 
-  create_table "list_workouts", force: :cascade do |t|
-    t.integer  "workout_id"
-    t.integer  "user_workout_list_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["user_workout_list_id"], name: "index_list_workouts_on_user_workout_list_id"
-    t.index ["workout_id"], name: "index_list_workouts_on_workout_id"
-  end
-
-  create_table "types", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_workout_lists", force: :cascade do |t|
+  create_table "lists", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.integer  "workout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_workout_lists_on_user_id"
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "admin",           default: false
-  end
-
-  create_table "workout_types", force: :cascade do |t|
-    t.integer  "workout_id"
-    t.integer  "type_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["type_id"], name: "index_workout_types_on_type_id"
-    t.index ["workout_id"], name: "index_workout_types_on_workout_id"
-  end
-
-  create_table "workouts", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
